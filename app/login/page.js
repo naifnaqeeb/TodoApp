@@ -8,20 +8,21 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
     const response = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
     });
     const data = await response.json();
     console.log(data);
-    if (response.status === 401) {
-      return router.push("/login");
-    }
-    if (!data.error) {
-      return router.push("/");
+    if (!response.ok) {
+      setError(data.error || "An unexpected error occurred.");
+    } else {
+      router.push("/");
     }
   };
 
@@ -61,6 +62,9 @@ export default function LoginPage() {
               required
             />
           </div>
+          {error && (
+            <p className="text-sm text-red-500 text-center">{error}</p>
+          )}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-md font-medium hover:opacity-90"
