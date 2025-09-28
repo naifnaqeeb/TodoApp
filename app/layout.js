@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Todo App",
   description: "A modern Todo App built with Next.js and Tailwind CSS",
+  icons: {
+    icon: "/todo_logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {
