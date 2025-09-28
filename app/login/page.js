@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("procodrr@gmail.com");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -44,6 +44,7 @@ export default function LoginPage() {
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Please enter your email"
               required
             />
           </div>
@@ -56,6 +57,7 @@ export default function LoginPage() {
               className="mt-1 w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-900 dark:text-white"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Please enter your password"
               required
             />
           </div>
